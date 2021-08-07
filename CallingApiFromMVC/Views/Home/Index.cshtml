@@ -1,0 +1,80 @@
+﻿@model IEnumerable<CallingApiFromMVC.Models.Invoice>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<h1> Index </h1>
+
+<p>
+    @*<a asp-action="--/Invoices">Create New</a>*@
+    <h2>@Html.ActionLink("Create Invoice", "Index", "Invoices")</h2>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.invoice_no)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.from)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.to)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.invoice_date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.invoice_due)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.po_number)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.currency)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.total)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.invoice_no)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.from)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.company_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.invoice_date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.invoice_due)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.po_number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.currency)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.total)
+            </td>
+            <td>
+                @* @Html.ActionLink("Edit", "Edit", new { }) | *@
+                <a href=" @Url.Action("createORdelete","Home", new {  }) "
+                   class="btn btn-default"><i class="fa fa-pencil"></i> Edit</a>
+                @Html.ActionLink("Details", "Details", new {  }) |
+                @Html.ActionLink("Delete", "Delete", new {  }) |
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
