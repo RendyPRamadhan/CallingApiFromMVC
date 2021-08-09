@@ -1,10 +1,14 @@
-﻿@{
+﻿@model MyViewModel
+
+@{
+
     ViewBag.Title = "Invoice";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 
+<h2>@Html.ActionLink("Create Invoice", "test", "Invoices")</h2>
 <table width="100%">
     <tr>
         <th> <button class="btn btn-primary" color="Green">Paid</button> </th>
@@ -29,8 +33,7 @@
 
 <div class="form-group">
     <label for="language">Language </label>
-    @*<datalist id="listLanguage" class="form-control" name="language" />*@
-    <select id="SelLanguage" class="form-control" name="language" >
+    <select id="SelLanguage" class="form-control" name="language">
         <option value="1"> English (US) </option>
     </select>
 </div>
@@ -41,22 +44,44 @@
         <option value=""> Select Currency </option>
     </select>
 </div>
-        <div class="form-group">
-            <button id="btnAddNew" class="btn btn-sm btn-primary">Save Add Detail</button>
-        </div>
+<div class="form-group">
+    <button id="btnAddNew" class="btn btn-sm btn-primary">Save Add Detail</button>
+</div>
 
 
-        <h2>Student List</h2>
-        <table id="tblStudent" class="table table-sm table-striped table-bordered m-2">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Quantity</th>
-                    <th>Rate</th>
-                    <th>Amount</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
+<h2>Student List</h2>
+<table id="tblStudent" class="table table-sm table-striped table-bordered m-2">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Rate</th>
+            <th>Amount</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
 
-     
+
+
+<form method="post" enctype="multipart/form-data" asp-action="AddNewBook" asp-controller="Invoices">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="curr_id" class="control-label"></label>
+        <select asp-for="curr_id" class="form-control"
+                asp-items="@(new SelectList(Model.Currencys, "currency", "curr_desc"));">
+            <option value="">Please choose your currency</option>
+        </select>
+        <span asp-validation-for="curr_id" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="curr_id" class="control-label"></label>
+        <select asp-for="curr_id" class="form-control"
+                asp-items="@(new SelectList(Model.UOMs, "uom_code", "unit_of_measurement"));">
+            <option value="">Please choose your currency</option>
+        </select>
+        <span asp-validation-for="curr_id" class="text-danger"></span>
+    </div>
+</form>

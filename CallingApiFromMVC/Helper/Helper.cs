@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CallingApiFromMVC.Helper
 {
-    public class StudentAPI
+    public class InvoiceAPI
     {
         public HttpClient Initial()
         {

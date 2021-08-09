@@ -10,5 +10,6 @@ namespace CallingApiFromMVC.Models
         public int currency_id { get; set; }
         public string currency { get; set; }
         public string curr_desc { get; set; }
+        
     }
 }

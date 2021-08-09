@@ -15,19 +15,19 @@ namespace CallingApiFromMVC.Controllers
 {
     public class HomeController : Controller
     {
-        StudentAPI _api = new StudentAPI();
+        InvoiceAPI _api = new InvoiceAPI();
 
         public async Task<IActionResult> Index()
         {
-            List<Invoice> students = new List<Invoice>();
+            List<Invoice> Invoices = new List<Invoice>();
             HttpClient client = _api.Initial();
             HttpResponseMessage res = await client.GetAsync("api/Invoices");
             if (res.IsSuccessStatusCode)
             {
                 var results = res.Content.ReadAsStringAsync().Result;
-                students = JsonConvert.DeserializeObject<List<Invoice>>(results);
+                Invoices = JsonConvert.DeserializeObject<List<Invoice>>(results);
             }
-            return View(students);
+            return View(Invoices);
         }
 
 
